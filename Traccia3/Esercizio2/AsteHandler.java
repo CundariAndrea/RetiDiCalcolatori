@@ -42,7 +42,7 @@ public class AsteHandler extends Thread{
                 byte [] buf=messaggio.getBytes();
                 ByteArrayOutputStream baos=new ByteArrayOutputStream();
                 ObjectOutputStream oos=new ObjectOutputStream(baos);
-                oos.writeObject(messaggio);
+                oos.writeObject(buf);
                 oos.close();
                 baos.close();
             }else{

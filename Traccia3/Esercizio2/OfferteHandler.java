@@ -13,6 +13,7 @@ public class OfferteHandler extends Thread{
     private Socket socket;
     private HashMap<Asta, LinkedList<Offerta>> offerte;
     private HashMap<Asta,Timestamp> asteAttive;
+    private boolean messaggio=false;
 
     public OfferteHandler(Integer tcpPort, HashMap<Asta,LinkedList<Offerta>> offerte, HashMap<Asta, Timestamp> aste) {
         this.tcpPort = tcpPort;
@@ -34,9 +35,7 @@ public class OfferteHandler extends Thread{
                                 LinkedList<Offerta> tmp=offerte.get(offerta.getIdAsta());
                                 tmp.addLast(offerta);
                                 offerte.put(asta1,tmp);
-                                boolean messaggio=true;
-                                ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-                                oos.writeObject(messaggio);
+                                messaggio=true;
                             }
                         }
                     }else{
@@ -45,18 +44,22 @@ public class OfferteHandler extends Thread{
                             if(asta1.getIdAsta().equals(offerta.getIdAsta())){
                                 tmp.addLast(offerta);
                                 offerte.put(asta1,tmp);
-                                boolean messaggio=true;
-                                ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-                                oos.writeObject(messaggio);
+                                messaggio=true;
                             }
                         }
                     }
-                }else{
-                    //genera messaggio false
-                    boolean messaggio=false;
-                    ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-                    oos.writeObject(messaggio);
                 }
+            }
+            if(!messaggio){
+                //genera messaggio false
+                ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+                oos.writeObject(messaggio);
+                oos.close();
+            }else{
+                //genera messaggio true
+                ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+                oos.writeObject(messaggio);
+                oos.close();
             }
         }catch (Exception e){
             e.printStackTrace();
