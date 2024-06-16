@@ -47,15 +47,18 @@ public class RichiesteHandler extends Thread{
                 while (min>=((int) System.currentTimeMillis()/(1000*60)) ){
                     String ricevuta=(String) ois.readObject();
                     StringTokenizer st=new StringTokenizer(ricevuta,",");
-                    String hostName=st.nextToken().replace("<","").replace(">","");
-                    Double prezzo=Double.valueOf(st.nextToken().replace("<","").replace(">",""));
+                    String hostName=st.nextToken().replace("<","")
+                            .replace(">","");
+                    Double prezzo=Double.valueOf(st.nextToken().replace("<","")
+                            .replace(">",""));
                     Offerta offerta=new Offerta(hostName,prezzo);
                     offerte.add(offerta);
                 }
                 for(Offerta o:offerte){
                     String offerta;
                     StringBuilder sb1=new StringBuilder();
-                    sb1.append("<").append(o.getHostnameCentroBenessere()).append(">,<").append(o.getPrezzo());
+                    sb1.append("<").append(o.getHostnameCentroBenessere())
+                            .append(">,<").append(o.getPrezzo());
                     offerta =sb1.toString();
                     oos.writeObject(offerta);
                 }
