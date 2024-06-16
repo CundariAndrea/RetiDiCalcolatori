@@ -32,7 +32,7 @@ public class Gestore {
                 Date d=new Date(data);
                 String np=st.nextToken().replace("<","").replace(">","");
                 Richiesta r=new Richiesta(d,Integer.parseInt(np));
-                gestore.richiesteDaGestire.add(r);
+                gestore.richiesteDaGestire.addLast(r);
                 RichiesteHandler rh=new RichiesteHandler(gestore.richiesteDaGestire,gestore.inputTcp,
                         gestore.outputTCP,gestore.indirizzoMulticast,gestore.multicastPort,gestore.offerte);
                 rh.start();

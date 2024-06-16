@@ -58,7 +58,7 @@ public class RichiesteHandler extends Thread{
                     String offerta;
                     StringBuilder sb1=new StringBuilder();
                     sb1.append("<").append(o.getHostnameCentroBenessere())
-                            .append(">,<").append(o.getPrezzo());
+                            .append(">,<").append(o.getPrezzo()).append(">");
                     offerta =sb1.toString();
                     oos.writeObject(offerta);
                 }
