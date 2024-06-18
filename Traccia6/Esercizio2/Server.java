@@ -23,6 +23,7 @@ public class Server {
                 CanzoneHandler ch=new CanzoneHandler(server.tcpInput,server.idCanzone,server.canzoni);
                 ch.start();
                 NotificaHandler nh=new NotificaHandler(server.tcpNotifica,server.udpPort,server.canzoni,server.richieste);
+                nh.start();
             }
         }catch (Exception e){
             System.out.println(e);

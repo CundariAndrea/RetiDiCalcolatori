@@ -52,7 +52,7 @@ public class CanzoneHandler extends Thread{
     }
 
 
-    public void run() {
+    public void run(){
         try{
             currentTime=new Timestamp(System.currentTimeMillis());
             ServerSocket serverSocket=new ServerSocket(tcpInput);
