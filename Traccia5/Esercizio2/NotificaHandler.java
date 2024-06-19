@@ -40,10 +40,7 @@ public class NotificaHandler extends Thread {
                                         String messagio=sb.toString();
                                         byte [] buff=messagio.getBytes();
                                         DatagramPacket packet=new DatagramPacket(buff,buff.length, InetAddress.getByName(link.get(i)),4000);
-                                        ByteArrayOutputStream baos=new ByteArrayOutputStream();
-                                        ObjectOutputStream oos=new ObjectOutputStream(baos);
-                                        oos.write(buff);
-                                        oos.close();
+                                        socket.send(packet);
                                     } catch (IOException e) {
                                         throw new RuntimeException(e);
                                     }
